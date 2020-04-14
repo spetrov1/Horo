@@ -3,6 +3,7 @@
 #include "Task.h"
 #include "TaskParser.h"
 #include <string>
+#include "Horo.cpp"
 
 
 // just to test
@@ -14,12 +15,12 @@ void print(std::vector<std::string> data) {
 
 int main()
 {
-    std::string input;
+    std::vector<Dancer> v;
+    v.push_back(Dancer("Slavcho"));
+    v.push_back(Dancer("Goliamata bira"));
+    v.push_back(Dancer("Mustaka"));
 
-    getline(std::cin, input);
-    print( TaskParser().parse(input).data );
-    
-    
-
+    Horo h(v);
+    h.print();
 }
 

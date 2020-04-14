@@ -21,9 +21,18 @@
     <ClInclude Include="TaskParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Horo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dancer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Horo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

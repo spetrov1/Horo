@@ -6,6 +6,8 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 
+// ASK TODO tests in different .cpp files ?
+
 TEST_CLASS(TaskParserTests)
 {
 private:
@@ -84,4 +86,6 @@ public:
 	}
 
 };
+
+
 

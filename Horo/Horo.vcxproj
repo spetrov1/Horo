@@ -147,9 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Horo.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dancer.h" />
+    <ClInclude Include="Horo.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TaskParser.h" />
   </ItemGroup>
