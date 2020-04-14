@@ -8,7 +8,7 @@
 /// Task (command) consists of verb + arguments
 class Task
 {
-private:
+public:
 	std::vector<std::string> data; /// Task elements as vector's elements
 
 public:
@@ -20,9 +20,13 @@ public:
 	}
 
 	std::string argument(size_t arg_index) const {
-		assert(arg_index > 1);
+		assert(arg_index >= 1);
 
 		return data[arg_index];
+	}
+
+	size_t numberOfArgs() const {
+		return data.size() - 1;
 	}
 };
 
