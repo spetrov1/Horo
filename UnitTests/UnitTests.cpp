@@ -3,10 +3,47 @@
 #include "../Horo/Task.h"
 #include "../Horo/TaskParser.h"
 
+#include "../Horo/Horo.h"
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 
 // ASK TODO tests in different .cpp files ?
+
+
+/*
+TEST_CLASS(HoroTests) {
+private:
+	// Horo horo;
+	Dancer d1;
+	Dancer d2;
+	Dancer d3;
+	Dancer d4;
+	std::vector<Dancer> dancers;
+
+public:
+	HoroTests() : d1("Slavcho"), d2("Goliama riba"), d3("Georgi"), d4("Atanas")
+	{
+		dancers.push_back(d1);
+		dancers.push_back(d2);
+		dancers.push_back(d3);
+		dancers.push_back(d4);
+	}
+
+	TEST_METHOD(SomeTestMethod) {
+		// Horo horo(dancers);
+		// TODO
+	}
+
+	TEST_METHOD(SomeTestMethod2) {
+		// Horo horo(dancers);
+		// TODO
+	}
+
+	
+};
+*/
+
 
 TEST_CLASS(TaskParserTests)
 {
@@ -85,6 +122,14 @@ public:
 		Assert::AreEqual(expected, task.argument(2));
 	}
 
+	TEST_METHOD(OneArgumentTaskCorrectTaskIsCreated) {
+		std::string input = "info \"haimanata 2\" ";
+		Task task = parser.parse(input);
+		std::string expected = "haimanata 2";
+
+		Assert::AreEqual(expected, task.argument(1));
+	}
+	
 };
 
 

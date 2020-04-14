@@ -26,11 +26,15 @@ private:
 	bool areNeighbours(Dancer& dancer1, Dancer& dancer2);
 	Dancer& leftNeighbour(const Dancer& );
 	Dancer& rightNeighbour(const Dancer& );
+	Dancer& getDancerByName(std::string );
+	void printRelation(Dancer& d1, Dancer& d2) const;
 
 public:
 
 	Horo(std::vector<Dancer>& firstDancers);
 
+
+	void printInfo(std::string name);
 
 	// already just to test
 	void print() const {

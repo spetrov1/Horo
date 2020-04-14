@@ -1,18 +1,7 @@
 #include "Horo.h"
 
 
-/// \param firstDancers dancers to start the horo
-Horo::Horo(std::vector<Dancer>& firstDancers) {
-	auto iter = dancers.end(); // dancers.begin() == dancers.end()
-
-	for (auto dancer : firstDancers) {
-		iter = dancers.insert(iter, dancer);
-		dictionary[dancer.name()] = iter;
-		++iter;
-	}
-}
-
-
+/// \return whether dancer1 and dancer2 are neighbours
 bool Horo::areNeighbours(Dancer& dancer1, Dancer& dancer2) {
 	if (dancer1 == leftNeighbour(dancer2) ||
 		dancer2 == leftNeighbour(dancer1)) {
@@ -47,3 +36,66 @@ Dancer& Horo::rightNeighbour(const Dancer& dancer) {
 
 	return *(++dancer_position);
 }
+
+
+
+/// Return dancer from list of dancers for constant time
+/// If there is no such dancer, behaviour is undefined
+Dancer& Horo::getDancerByName(std::string name)
+{
+	return *dictionary[name];
+}
+
+
+
+
+/// Suggest d1 is leftNeighbour to d2
+void Horo::printRelation(Dancer& d1, Dancer& d2) const
+{
+	std::cout << " ";
+	if (d2.getHoldsLeft())
+		std::cout << "<";
+	std::cout << "--";
+	
+	if (d1.getHoldsRight())
+		std::cout << ">";
+	std::cout << " ";
+}
+
+
+
+/// \param firstDancers dancers to start the horo
+/// \throw invalid_argument if given number of dancers is smaller than 3
+Horo::Horo(std::vector<Dancer>& firstDancers) {
+	if (firstDancers.size() < 3)
+		throw std::invalid_argument("Too few dancers to create horo");
+	
+	auto iter = dancers.end(); // dancers.begin() == dancers.end()
+
+	for (auto dancer : firstDancers) {
+		iter = dancers.insert(iter, dancer);
+		dictionary[dancer.name()] = iter;
+		++iter;
+	}
+}
+
+
+
+void Horo::printInfo(std::string name)
+{
+	Dancer dancer = getDancerByName(name);
+	Dancer leftNeigh = leftNeighbour(dancer);
+	Dancer rightNeigh = rightNeighbour(dancer);
+
+	std::cout << leftNeigh.name() << " ";
+	printRelation(leftNeigh, dancer);
+	std::cout << dancer.name();
+	printRelation(dancer, rightNeigh);
+	std::cout << rightNeigh.name();
+}
+
+
+
+
+
+

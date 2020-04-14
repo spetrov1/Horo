@@ -3,7 +3,7 @@
 #include "Task.h"
 #include "TaskParser.h"
 #include <string>
-#include "Horo.cpp"
+#include "Horo.h"
 
 
 // just to test
@@ -27,6 +27,7 @@ int main()
     print(v);
     */
 
+    
     std::vector<Dancer> v;
 
     Dancer d1 = Dancer("Goliamata bira");
@@ -41,5 +42,7 @@ int main()
 
     Horo h(v);
     h.print();
+    
+    h.printInfo("Goliama bira"); // doesn't work for 'Goliamata riba'
 
 }
