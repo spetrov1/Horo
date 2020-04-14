@@ -27,10 +27,8 @@ public:
 		auto iter = dancers.begin();
 
 		for (auto dancer : firstDancers) {
-			// TODO maybe problems with inserted_position which will be removed
-			//			after cycle block is executed ?
-			auto inserted_position = dancers.insert(iter, dancer);
-			dictionary[dancer.name()] = inserted_position;
+			dancers.insert(iter, dancer);
+			dictionary[dancer.name()] = iter; // or iter maybe ?
 		}
 	}
 
@@ -38,10 +36,14 @@ public:
 	void print() const {
 		// TODO
 
-		for (auto elem : dancers) {
-			// elem.print();
-			std::cout << " hui ";
-		}
+		for (auto elem : dancers)
+			elem.print();
+		
+
+		std::cout << "\n\n";
+
+		for (auto elem : dictionary)
+			(*elem.second).print();
 
 	}
 

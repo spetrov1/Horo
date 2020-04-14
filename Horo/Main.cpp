@@ -16,9 +16,12 @@ void print(std::vector<std::string> data) {
 int main()
 {
     std::vector<Dancer> v;
-    v.push_back(Dancer("Slavcho"));
+    
     v.push_back(Dancer("Goliamata bira"));
     v.push_back(Dancer("Mustaka"));
+    v.push_back(Dancer("Slavcho"));
+    v.push_back(Dancer("Georgi"));
+    
 
     Horo h(v);
     h.print();
