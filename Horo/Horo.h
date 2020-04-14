@@ -22,49 +22,33 @@ private:
 	/// participants in the horo
 	std::list<Dancer> dancers;
 
+
+	bool areNeighbours(Dancer& dancer1, Dancer& dancer2);
+	Dancer& leftNeighbour(const Dancer& );
+	Dancer& rightNeighbour(const Dancer& );
+
 public:
-	Horo(std::vector<Dancer>& firstDancers) {
-		auto iter = dancers.begin();
 
-		for (auto dancer : firstDancers) {
-			dancers.insert(iter, dancer);
-			dictionary[dancer.name()] = iter; // or iter maybe ?
-		}
-	}
+	Horo(std::vector<Dancer>& firstDancers);
 
 
+	// already just to test
 	void print() const {
-		// TODO
 
 		for (auto elem : dancers)
 			elem.print();
-		
-
-		std::cout << "\n\n";
-
-		for (auto elem : dictionary)
-			(*elem.second).print();
 
 	}
 
-	/// Prints neighbours as shows if they hold each other
-	void printNeighbours(Dancer a, Dancer b) {
-		// TODO
-	}
+
+	 
+
+	
 
 
-	bool areNeighbours(const Dancer& a, const Dancer& b) const {
-		if (precede(a, b) || precede(b, a)) {
-			// TODO
-		}
-		return bool();
-	}
+	
+	
+	
 
-	bool precede(const Dancer& a, const Dancer& b) const {
-
-		// TODO
-
-		return bool();
-	}
 };
 

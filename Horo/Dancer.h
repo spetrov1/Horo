@@ -76,5 +76,13 @@ public:
 		std::cout << holdsLeft << " " << nickname << " " << holdsRight << std::endl;
 	}
 
+
+	/// We consider equal data member is not enough for equallity
+	/// Dancers may be from different horos
+	/// \return true if they are same objects
+	bool operator==(const Dancer& other) {
+		return this == &other;
+	}
+
 };
 
