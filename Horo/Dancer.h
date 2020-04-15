@@ -3,7 +3,7 @@
 #include <string>
 
 enum class Direction {
-	LEFT, RIGHT
+	LEFT, RIGHT, BOTH
 };
 
 /// Dancer in Horo
@@ -30,11 +30,16 @@ public:
 	/// Grab neighbour
 	/// \param neighbour to grab
 	void grab(Direction d) {
-		if (d == Direction::LEFT)
+		if (d == Direction::LEFT) {
 			holdsLeft = true;
-		
-		else if (d == Direction::RIGHT)
+		}
+		else if (d == Direction::RIGHT) {
 			holdsRight = true;
+		}
+		else {
+			holdsLeft = true;
+			holdsRight = true;
+		}
 		
 	}
 
@@ -43,10 +48,16 @@ public:
 	/// Release neighbour
 	/// \param neighbour to release
 	void release(Direction d) {
-		if (d == Direction::LEFT)
+		if (d == Direction::LEFT) {
 			holdsLeft = false;
-		else if (d == Direction::RIGHT)
+		}
+		else if (d == Direction::RIGHT) {
 			holdsRight = false;
+		}
+		else {
+			holdsLeft = false;
+			holdsRight = false;
+		}
 	}
 
 

@@ -42,7 +42,15 @@ int main()
 
     Horo h(v);
     h.print();
+
+    std::cout << "\n\n";
+    h.add("NewDancer", "Georgi", "Slavcho");
+    h.print();
+
+
+    // const int a = 5;
+    // const_cast<int&>(a) = 10;
+    // std::cout << a;
     
-    h.printInfo("Goliama bira"); // doesn't work for 'Goliamata riba'
 
 }
