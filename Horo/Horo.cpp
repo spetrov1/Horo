@@ -65,9 +65,53 @@ void Horo::printRelation(Dancer& d1, Dancer& d2) const
 	std::cout << " ";
 }
 
+
+
+/// Checks if dancer with the specified name exists
 bool Horo::existsDancerByName(std::string dancer_name)
 {
 	return dictionary.find(dancer_name) != dictionary.end();
+}
+
+
+/// Checks if dancer is ready to be removed from the horo
+/// Checks if dancer holds neighbours or is being holded by them
+bool Horo::readyToLeave(Dancer& dancer)
+{
+	Dancer& leftNeigh = leftNeighbour(dancer);
+	Dancer& rightNeigh = rightNeighbour(dancer);
+
+	return !dancer.getHoldsLeft() && !dancer.getHoldsRight() &&
+		!leftNeigh.getHoldsRight() &&
+		!rightNeigh.getHoldsLeft();
+}
+
+
+
+/// Checks if given dancers are ready to be swapped
+/// Checks if they are being holded by their neighbours
+bool Horo::readyToBeSwapped(Dancer& dancer1, Dancer& dancer2)
+{
+	if (dancer1 == leftNeighbour(dancer2)) {
+		return !
+			( leftNeighbour(dancer1).getHoldsRight() ||
+			dancer1.getHoldsLeft() ||
+			rightNeighbour(dancer2).getHoldsLeft() ||
+			dancer2.getHoldsRight()
+			);
+	}
+	else if (dancer2 == leftNeighbour(dancer1)) {
+		return !
+			(leftNeighbour(dancer2).getHoldsRight() ||
+				dancer2.getHoldsLeft() ||
+				rightNeighbour(dancer1).getHoldsLeft() ||
+				dancer1.getHoldsRight()
+				);
+	}
+
+	// else given dancers are not neighbours
+
+	return false;
 }
 
 
@@ -160,10 +204,49 @@ bool Horo::add(std::string new_dancer_name, std::string left_dancer_name, std::s
 ///    else false and error is printed to stdout
 bool Horo::remove(std::string dancer_name)
 {
-	
-	// TODO
-	return bool();
+	Dancer& dancer = getDancerByName(dancer_name);
+
+	if (!readyToLeave(dancer)) {
+		std::cout << "This won't be so easy! \n";
+		return false;
+	}
+
+	dancers.erase(dictionary[dancer_name]);
+	dictionary.erase(dancer_name);
+
+	std::cout << dancer_name << " is free at last! \n";
+
+	if (dancers.size() <= 2) {
+		std::cout << ".... and the music stops!";
+	}
+
+	return true;
 }
+
+
+
+/// Swap given dancers if they are ready (not being holded by their neighbours)
+/// \return true if operation is successfull
+bool Horo::swap(std::string dancer1_name, std::string dancer2_name)
+{
+	Dancer& dancer1 = getDancerByName(dancer1_name);
+	Dancer& dancer2 = getDancerByName(dancer2_name);
+
+	if (!readyToBeSwapped(dancer1, dancer2)) {
+		std::cout << "Couldn't swap " << dancer1_name
+			<< " and " << dancer2_name << std::endl;
+
+		return false;
+	}
+
+	std::swap(dictionary[dancer1_name], dictionary[dancer2_name]);
+	std::swap(dancer1, dancer2);
+
+	return true;
+}
+
+
+
 
 
 

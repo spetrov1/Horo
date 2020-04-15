@@ -8,8 +8,7 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 
-// ASK TODO tests in different .cpp files ?
-
+// ASK tests in different .cpp files ?
 
 /*
 TEST_CLASS(HoroTests) {
@@ -122,7 +121,8 @@ public:
 		Assert::AreEqual(expected, task.argument(2));
 	}
 
-	TEST_METHOD(OneArgumentTaskCorrectTaskIsCreated) {
+
+	TEST_METHOD(OneArgumentTaskCorrectArgumentsAreCreated) {
 		std::string input = "info \"haimanata 2\" ";
 		Task task = parser.parse(input);
 		std::string expected = "haimanata 2";
@@ -130,6 +130,14 @@ public:
 		Assert::AreEqual(expected, task.argument(1));
 	}
 	
+
+	TEST_METHOD(OneArgumentTaskCorrectVerbIsRecorded) {
+		std::string input = "info \"haimanata 2\" ";
+		Task task = parser.parse(input);
+		std::string expected = "info";
+
+		Assert::AreEqual(expected, task.verb());
+	}
 };
 
 

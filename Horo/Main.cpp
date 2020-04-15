@@ -44,8 +44,14 @@ int main()
     h.print();
 
     std::cout << "\n\n";
-    h.add("NewDancer", "Georgi", "Slavcho");
+    h.release("Mustaka", Direction::RIGHT);
+    h.release("Slavcho", Direction::LEFT);
+
+    h.release("Georgi", Direction::RIGHT);
+    h.release("Goliamata bira", Direction::LEFT);
+    h.swap(d3.name(), d4.name());
     h.print();
+    
 
 
     // const int a = 5;

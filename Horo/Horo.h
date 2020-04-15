@@ -31,6 +31,8 @@ public:
 	Dancer& getDancerByName(std::string );  /// Consider public function, for testing purposes
 	void printRelation(Dancer& d1, Dancer& d2) const;
 	bool existsDancerByName(std::string);
+	bool readyToLeave(Dancer& dancer);
+	bool readyToBeSwapped(Dancer&, Dancer&);
 
 public:
 
@@ -46,16 +48,26 @@ public:
 
 	bool remove(std::string dancer);
 
+	bool swap(std::string dancer1_name, std::string dancer2_name);
+
+
 	// already just to test
 	void print() const {
 
-		for (auto elem : dancers)
-			elem.print();
+		/*
+		for (auto elem : dictionary) {
+			std::cout << elem.first << " ";
+			(*(elem.second)).print();
+		}
+		*/
 
+		for (auto dancer : dancers)
+			dancer.print();
 	}
 
 
-	 
+	// ASK do we need exit ?
+	// Are default destructors of unordered_map and list doing enough ?
 
 	
 

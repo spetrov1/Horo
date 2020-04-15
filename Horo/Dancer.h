@@ -82,9 +82,12 @@ public:
 	}
 
 
+
 	// print to test
 	void print() const {
-		std::cout << holdsLeft << " " << nickname << " " << holdsRight << std::endl;
+		std::cout << "holdsLeft = " << holdsLeft << " " 
+			<< nickname << " "
+			<< "holdsRight = " << holdsRight << std::endl;
 	}
 
 
